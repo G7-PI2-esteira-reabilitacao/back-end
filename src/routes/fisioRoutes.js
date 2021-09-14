@@ -1,8 +1,17 @@
-const { Router } = require('express');
-const routes = Router();
+const express = require('express');
 const fisioController = require('../controllers/fisioController');
 
-routes.post('/', fisioController.create);
-routes.get('/', fisioController.listAll);
+const routes = express.Router();
 
+routes
+    .route("/")
+    .get(fisioController.getAllFisio)
+    .post(fisioController.createFisio)
+
+routes
+    .route("/:id")
+    .get(fisioController.getOneFisio)
+    .patch(fisioController.updateFisio)
+    .delete(fisioController.deleteFisio)
+    
 module.exports = routes;
