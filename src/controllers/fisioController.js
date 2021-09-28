@@ -1,17 +1,83 @@
-const fisioBase = require('../base/fisioBase');
+const Fisio = require('../models/fisioModel');
 
-class fisioController {
-    async create(req, res) {
 
-        try {
-            req.body.activate = true;
-            const feedback = await fisioBase.create(req.body);
-            return res.json(feedback);
-        } catch (error) {
-            return res.status(400).json({ message: error.message || error });
-        }
+exports.getAllFisio = async (req,res) => {
+    try {
+        const fisios = await Fisio.find()
+        res.status(200).json({
+            status: "Sucesso",
+            results: fisios.length,
+            data: {
+                fisios
+            }
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: "Erro"
+        })
     }
-
 }
 
-module.exports = new fisioController();
+exports.getOneFisio = async (req,res) => {
+    try {
+        const fisio = await Fisio.findById(req.params.id)
+        res.status(200).json({
+            status: "Sucesso",
+            data: {
+                fisio
+            }
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: "Erro"
+        })
+    }
+}
+
+exports.createFisio = async (req,res) => {
+    try {
+        const fisio = await Fisio.create(req.body)
+        res.status(200).json({
+            status: "Sucesso",
+            data: {
+                fisio
+            }
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: "Erro"
+        })
+    }
+}
+
+exports.updateFisio = async (req,res) => {
+    try {
+        const fisio = await Fisio.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.status(200).json({
+            status: "Sucesso",
+            data: {
+                fisio
+            }
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: "Erro"
+        })
+    }
+}
+
+exports.deleteFisio = async (req,res) => {
+    try {
+        const fisio = await Fisio.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            status: "Sucesso"
+        })
+    } catch (e) {
+        res.status(400).json({
+            status: "Erro"
+        })
+    }
+}
