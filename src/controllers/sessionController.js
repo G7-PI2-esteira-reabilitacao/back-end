@@ -1,13 +1,13 @@
-const Patient = require('../models/patientModel');
+const Session = require('../models/sessionModel');
 
-exports.getAllPatient = async (req,res) => {
+exports.getAllSession = async (req,res) => {
     try {
-        const patients = await Patient.find()
+        const sessions = await Session.find()
         res.status(200).json({
             status: "Sucesso",
-            results: patients.length,
+            results: sessions.length,
             data: {
-                patients
+                sessions
             }
         })
     } catch (e) {
@@ -17,13 +17,13 @@ exports.getAllPatient = async (req,res) => {
     }
 }
 
-exports.getOnePatient = async (req,res) => {
+exports.getOneSession = async (req,res) => {
     try {
-        const patient = await Patient.findById(req.params.id)
+        const session = await Session.findById(req.params.id)
         res.status(200).json({
             status: "Sucesso",
             data: {
-                patient
+                session
             }
         })
     } catch (e) {
@@ -33,13 +33,13 @@ exports.getOnePatient = async (req,res) => {
     }
 }
 
-exports.createPatient = async (req,res) => {
+exports.createSession = async (req,res) => {
     try {
-        const patient = await Patient.create(req.body)
+        const session = await Session.create(req.body)
         res.status(200).json({
             status: "Sucesso",
             data: {
-                patient
+                session
             }
         })
     } catch (e) {
@@ -49,16 +49,16 @@ exports.createPatient = async (req,res) => {
     }
 }
 
-exports.updatePatient = async (req,res) => {
+exports.updateSession = async (req,res) => {
     try {
-        const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
+        const session = await Session.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
         })
         res.status(200).json({
             status: "Sucesso",
             data: {
-                patient
+                session
             }
         })
     } catch (e) {
@@ -68,9 +68,9 @@ exports.updatePatient = async (req,res) => {
     }
 }
 
-exports.deletePatient = async (req,res) => {
+exports.deleteSession = async (req,res) => {
     try {
-        await Patient.findByIdAndDelete(req.params.id)
+        await Session.findByIdAndDelete(req.params.id)
         res.status(200).json({
             status: "Sucesso",
         })
