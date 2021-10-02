@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { MONGO_USER, MONGO_PASSWORD, MONGO_IP, MONGO_PORT } = require('./config/config');
-const patientRoutes = require('./routes/patientRoutes');
-const fisioRoutes = require('./routes/fisioRoutes');
+const routes = require('./routes');
 
 
 const app = express();
@@ -20,8 +19,9 @@ app.use(express.json());
 app.get("/", (req,res) => {
     res.send("<h2>Hi there!<h2>")
 })
-app.use("/patient", patientRoutes);
-app.use("/fisio", fisioRoutes);
+
+// isso vai charmar o routes/index.js e la vai ter todas as rotas encapsuladas para aumentar a modularidade e diminuir a complexidade do codigo
+app.use(routes); 
 
 
 
