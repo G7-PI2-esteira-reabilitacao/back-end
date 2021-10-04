@@ -3,7 +3,7 @@ const { Router } = require('express');
 const patientRoutes = require('./patientRoutes');
 // const fisioRoutes = require('./fisioRoutes');
 const sessionRoutes = require('./sessionRoutes');
-const afterSessionRoutes = require('./AfterSessionRoutes');
+const afterSessionRoutes = require('./afterSessionRoutes');
 
 const routes = Router();
 
