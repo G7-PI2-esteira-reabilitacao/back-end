@@ -3,9 +3,15 @@ back-end of FisioGama
 
 ## Configurações de ambiente
 
+Os serviços do FisioGama utilizam Docker e Docker-compose para a configuração do ambiente.
+
+O arquivo docker-compose se encontra nesse repositorio, e para ter acesso aos demias serviços é necessario que eles estajam na mesma pasta raiz do back-end, como no exemplo:
+
+/FisioGama/back-end e /FisioGama/BP_service
+
 ### Dependencias
 
-Para rodar localmente a aplicação, instale as seguintes dependedências:
+Para rodar a aplicação, instale as seguintes dependedências:
 
 - [Docker](https://docs.docker.com/engine/install/ubuntu/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
@@ -26,4 +32,3 @@ $ docker logs [nome do container]
 // Para ver o log do container, utilizar o nome do container disponibilizado na ultima coluna do $ docker ps
 
 ```
-Para subir a aplicação 
